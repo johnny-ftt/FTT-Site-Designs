@@ -1,0 +1,15 @@
+# robots.txt for FTT AI
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://ftt.ai/sitemap.xml
+
+# Crawl-delay (optional, adjust if needed)
+# Crawl-delay: 1
+
+# Disallow any future admin or private directories
+Disallow: /private/
+Disallow: /admin/
+Disallow: /_/
