@@ -5,27 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- SEO Meta Tags -->
-    <title>Our Approach - Build First, Sell Second | FTT AI</title>
-    <meta name="description" content="Discover our revolutionary build-first approach. We show up with working Optimizely sites already built - proof before commitment. 10x faster than traditional agencies.">
-    <meta name="keywords" content="build first approach, Optimizely agency approach, proof-first development, AI-powered agency, rapid prototyping">
-    <link rel="canonical" href="https://ftt.ai/approach.html">
+    <title>About Us - Meet the Team Behind FTT AI</title>
+    <meta name="description" content="Meet the founders of FTT AI. Optimizely-first, AI-fluent, remote-native team building the future of agency-client relationships through proof-first delivery.">
+    <meta name="keywords" content="FTT AI team, Optimizely experts, AI development team, agency founders, about FTT">
+    <link rel="canonical" href="https://ftt.ai/about.html">
     <meta name="robots" content="index, follow">
     <meta name="author" content="FTT AI">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://ftt.ai/approach.html">
-    <meta property="og:title" content="Our Approach - Build First, Sell Second | FTT AI">
-    <meta property="og:description" content="Discover our revolutionary build-first approach. We show up with working Optimizely sites already built - proof before commitment. 10x faster than traditional agencies.">
+    <meta property="og:url" content="https://ftt.ai/about.html">
+    <meta property="og:title" content="About Us - Meet the Team Behind FTT AI">
+    <meta property="og:description" content="Meet the founders of FTT AI. Optimizely-first, AI-fluent, remote-native team building the future of agency-client relationships.">
     <meta property="og:image" content="https://ftt.ai/og-image.jpg">
     <meta property="og:site_name" content="FTT AI">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:url" content="https://ftt.ai/approach.html">
-    <meta name="twitter:title" content="Our Approach - Build First, Sell Second | FTT AI">
-    <meta name="twitter:description" content="Discover our revolutionary build-first approach. We show up with working Optimizely sites already built - proof before commitment. 10x faster than traditional agencies.">
+    <meta name="twitter:url" content="https://ftt.ai/about.html">
+    <meta name="twitter:title" content="About Us - Meet the Team Behind FTT AI">
+    <meta name="twitter:description" content="Meet the founders of FTT AI. Optimizely-first, AI-fluent, remote-native team building the future of agency-client relationships.">
     <meta name="twitter:image" content="https://ftt.ai/og-image.jpg">
+
     <!-- Performance Optimization -->
     <link rel="preconnect" href="https://images.unsplash.com">
     <link rel="dns-prefetch" href="https://images.unsplash.com">
@@ -178,8 +179,8 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&q=80') center/cover;
-            opacity: 0.1;
+            background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80') center/cover;
+            opacity: 0.12;
         }
 
         .hero-content {
@@ -201,9 +202,16 @@
             font-size: 1.5rem;
             color: rgba(255, 255, 255, 0.9);
             line-height: 1.8;
+            margin-bottom: 1rem;
         }
 
-        /* Section Styles */
+        .hero .tagline {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+        }
+
+        /* Sections */
         section {
             padding: 6rem 5%;
         }
@@ -231,79 +239,52 @@
             letter-spacing: -1px;
         }
 
-        /* Shift Section */
-        .shift-section {
+        /* Who We Are */
+        .who-we-are {
             background: white;
         }
 
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 5rem;
-            align-items: center;
-            margin-top: 3rem;
-        }
-
-        .content-text h2 {
+        .who-we-are h2 {
             background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-align: center;
         }
 
-        .content-text p {
+        .story-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .story-content p {
             font-size: 1.2rem;
-            line-height: 1.8;
+            line-height: 1.9;
             color: #4a5568;
             margin-bottom: 1.5rem;
         }
 
-        .highlight-box {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            border-left: 4px solid #667eea;
-            margin: 2rem 0;
-        }
-
-        .highlight-box p {
-            font-size: 1.3rem;
-            font-weight: 600;
+        .story-content strong {
             color: var(--text-dark);
-            margin: 0;
         }
 
-        .content-image {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-            height: 500px;
-        }
-
-        .content-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .content-image:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Principles Section */
-        .principles {
+        /* Values */
+        .our-values {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
 
-        .principles-grid {
+        .our-values h2 {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .values-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 3rem;
-            margin-top: 3rem;
         }
 
-        .principle-card {
+        .value-card {
             background: white;
             padding: 3rem;
             border-radius: 20px;
@@ -311,12 +292,12 @@
             transition: all 0.3s ease;
         }
 
-        .principle-card:hover {
+        .value-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
         }
 
-        .principle-icon {
+        .value-icon {
             width: 70px;
             height: 70px;
             background: var(--primary-gradient);
@@ -324,229 +305,138 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
             margin-bottom: 1.5rem;
-        }
-
-        .principle-card h3 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .principle-card p {
-            color: #4a5568;
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        /* Model Section */
-        .model-section {
-            background: white;
-        }
-
-        .model-comparison {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .comparison-card {
-            padding: 3rem;
-            border-radius: 20px;
-            position: relative;
-        }
-
-        .old-way {
-            background: #f7fafc;
-            border: 2px solid #e2e8f0;
-        }
-
-        .new-way {
-            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
-            border: 2px solid #667eea;
-        }
-
-        .comparison-card h3 {
             font-size: 2rem;
-            margin-bottom: 2rem;
         }
 
-        .comparison-list {
-            list-style: none;
-        }
-
-        .comparison-list li {
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            font-size: 1.1rem;
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-        }
-
-        .comparison-list li:last-child {
-            border-bottom: none;
-        }
-
-        .check, .cross {
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .check { color: #48bb78; }
-        .cross { color: #f56565; }
-
-        /* Process Section */
-        .process {
-            background: var(--dark-gradient);
-            color: white;
-        }
-
-        .process h2 {
-            color: white;
-            text-align: center;
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 1000px;
-            margin: 4rem auto;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateX(-50%);
-        }
-
-        .timeline-item {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
-            position: relative;
-        }
-
-        .timeline-item:nth-child(even) .timeline-content {
-            grid-column: 2;
-        }
-
-        .timeline-item:nth-child(even) .timeline-number {
-            left: auto;
-            right: -3rem;
-        }
-
-        .timeline-content {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2.5rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .timeline-number {
-            position: absolute;
-            left: -3rem;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 60px;
-            height: 60px;
-            background: var(--tertiary-gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: 900;
-            z-index: 1;
-        }
-
-        .timeline-content h3 {
+        .value-card h3 {
             font-size: 1.8rem;
             margin-bottom: 1rem;
         }
 
-        .timeline-content p {
-            opacity: 0.9;
+        .value-card p {
+            color: #4a5568;
             line-height: 1.7;
         }
 
-        /* Results Section */
-        .results {
+        /* Team */
+        .the-team {
             background: white;
         }
 
-        .results-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        .result-card {
+        .the-team h2 {
             text-align: center;
-            padding: 2rem;
+            margin-bottom: 1rem;
         }
 
-        .result-number {
-            font-size: 3.5rem;
-            font-weight: 900;
-            background: var(--secondary-gradient);
+        .team-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        .founder-card {
+            display: grid;
+            grid-template-columns: 400px 1fr;
+            gap: 4rem;
+            margin-bottom: 5rem;
+            align-items: start;
+        }
+
+        .founder-card:nth-child(even) {
+            direction: rtl;
+        }
+
+        .founder-card:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .founder-image {
+            width: 100%;
+            height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 120px;
+        }
+
+        .founder-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .founder-bio {
+            padding: 2rem 0;
+        }
+
+        .founder-bio h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            margin-bottom: 1rem;
         }
 
-        .result-label {
+        .founder-bio .title {
+            font-size: 1.3rem;
+            color: #764ba2;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .founder-bio p {
             font-size: 1.1rem;
+            line-height: 1.8;
             color: #4a5568;
-            line-height: 1.5;
+            margin-bottom: 1.3rem;
         }
 
-        /* CTA Section */
+        .founder-bio strong {
+            color: var(--text-dark);
+        }
+
+        /* CTA */
         .cta-section {
-            background: var(--primary-gradient);
-            color: white;
+            background: var(--dark-gradient);
             text-align: center;
+            color: white;
             padding: 8rem 5%;
         }
 
         .cta-section h2 {
             color: white;
             font-size: 3.5rem;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .cta-section p {
             font-size: 1.4rem;
             margin-bottom: 3rem;
-            opacity: 0.95;
+            opacity: 0.9;
         }
 
         .cta-button {
             display: inline-block;
             padding: 1.2rem 3rem;
-            background: white;
-            color: #667eea;
+            background: var(--primary-gradient);
+            color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 600;
             font-size: 1.1rem;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
 
         .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
         }
 
         /* Footer */
@@ -604,30 +494,19 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
-            .content-grid,
-            .model-comparison {
+            .values-grid {
                 grid-template-columns: 1fr;
             }
 
-            .principles-grid {
+            .founder-card {
                 grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .timeline::before {
-                left: 0;
-            }
-
-            .timeline-item {
-                grid-template-columns: 1fr;
-            }
-
-            .timeline-number {
-                left: -1rem !important;
-                right: auto !important;
-            }
-
-            .results-grid {
-                grid-template-columns: repeat(2, 1fr);
+            .founder-image {
+                height: 400px;
+                position: relative;
+                top: 0;
             }
         }
 
@@ -678,10 +557,6 @@
                 padding: 4rem 5%;
             }
 
-            .hero {
-                min-height: 80vh;
-            }
-
             .hero h1 {
                 font-size: 2.5rem;
             }
@@ -690,28 +565,32 @@
                 font-size: 1.2rem;
             }
 
+            .hero .tagline {
+                font-size: 1rem;
+            }
+
             h2 {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
-            .principle-card {
+            .story-content p {
+                font-size: 1.1rem;
+            }
+
+            .value-card {
                 padding: 2rem;
             }
 
-            .comparison-card {
-                padding: 2rem;
+            .founder-bio h3 {
+                font-size: 2rem;
             }
 
-            .content-image {
-                height: 300px;
+            .founder-bio .title {
+                font-size: 1.1rem;
             }
 
-            .timeline-content {
-                padding: 2rem;
-            }
-
-            .result-card {
-                padding: 1.5rem;
+            .founder-bio p {
+                font-size: 1rem;
             }
 
             .cta-section {
@@ -726,7 +605,6 @@
                 font-size: 1.2rem;
             }
 
-            .results-grid,
             .footer-grid {
                 grid-template-columns: 1fr;
             }
@@ -755,155 +633,139 @@
     </nav>
     <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
+    <!-- Hero -->
     <section class="hero">
         <div class="hero-content">
-            <h1>Pre-Sales Becomes Delivery</h1>
-            <p class="subtitle">We've fundamentally restructured how agency-client relationships begin. Instead of pitching what we could build, we lead by building. Real sites. Real proof. Before you commit to anything.</p>
+            <h1>We Don't Make Decks.<br>We Make Things Work.</h1>
+            <p class="subtitle">Optimizely-first. AI-fluent. Remote-native.</p>
+            <p class="tagline">Three founders who believe in building first, everything else second.</p>
         </div>
     </section>
 
-    <section class="shift-section section-reveal">
+    <!-- Who We Are -->
+    <section class="who-we-are section-reveal">
         <div class="container">
-            <div class="content-grid">
-                <div class="content-text">
-                    <h2>The Shift We're Seeing</h2>
-                    <p>Something has fundamentally changed in how fast we can actually build.</p>
-                    <p>On our recent Optimizely SaaS project, we went from no code at all to a real, working site in about 2–3 days. Not a concept. Not a mock. A fully functional site running on Optimizely infrastructure.</p>
-                    <p>That build wasn't a one-off. The way it's structured means we can now reuse it—reskin it quickly, spin up custom content types fast, and adapt it for other brands.</p>
-                    <div class="highlight-box">
-                        <p>The takeaway is simple: we can now show real things, very early.</p>
-                    </div>
+            <h2>Who We Are</h2>
+            <div class="story-content">
+                <p>We're not a traditional agency. We don't do endless discovery calls, lengthy proposals, or speculative pitches. We're <strong>builders first</strong>—deeply technical, AI-augmented, and Optimizely-obsessed.</p>
+
+                <p>FTT AI was founded on a simple insight: <strong>the traditional agency model is broken</strong>. Clients spend months in sales cycles, taking risks on promises and presentations. Agencies waste time selling instead of building. Everyone loses.</p>
+
+                <p>We flipped the model. We show up with <strong>working Optimizely sites already built</strong>—production-realistic, running on real infrastructure, customized to your brand. The conversation starts with proof, not promises.</p>
+
+                <p>This is only possible because of three things: our <strong>deep Optimizely expertise</strong>, our <strong>AI-accelerated workflows</strong> (we've integrated Claude Code Skills directly into our build process), and our <strong>reusable foundation</strong> that gets faster with every project.</p>
+
+                <p>We're a small, founder-led team. No account managers. No layers. Just people who build, working directly with you to deliver what actually matters: <strong>sites that work, delivered fast</strong>.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Values -->
+    <section class="our-values section-reveal">
+        <div class="container">
+            <h2>What We Value</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🔨</div>
+                    <h3>Build First</h3>
+                    <p>We don't pitch what we could build. We show up with working code. Proof always comes before promises. Building is how we think, how we sell, and how we earn trust.</p>
                 </div>
-                <div class="content-image">
-                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80" alt="Fast Development">
+
+                <div class="value-card">
+                    <div class="value-icon">⚡</div>
+                    <h3>Speed as Advantage</h3>
+                    <p>AI doesn't replace our expertise—it amplifies it. We've built workflows that let us move 10x faster than traditional agencies, without compromising quality. Speed is our structural advantage.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🎯</div>
+                    <h3>Outcome Obsessed</h3>
+                    <p>We care about sites that actually work—that drive results, scale with your business, and make your team's lives easier. Deliverables matter less than outcomes.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🔧</div>
+                    <h3>Technical Depth</h3>
+                    <p>We're not generalists pretending to know Optimizely. We live in the platform. We know its quirks, its capabilities, and how to push it to deliver what clients actually need.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h3>Remote Native</h3>
+                    <p>Built for distributed work from day one. No office overhead, no commute waste, no geographic constraints. We hire the best people wherever they are.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🚀</div>
+                    <h3>Sustainable Growth</h3>
+                    <p>Every project strengthens our foundation. Our reusable codebase and AI systems get smarter with each build. We're not starting from scratch—we're compounding expertise.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="principles section-reveal">
+    <!-- The Team -->
+    <section class="the-team section-reveal">
         <div class="container">
-            <h2>Our Core Principles</h2>
-            <div class="principles-grid">
-                <div class="principle-card">
-                    <div class="principle-icon">🎯</div>
-                    <h3>Proof Over Persuasion</h3>
-                    <p>We don't sell you on what we could do. We show you what we've already done. Working sites replace PowerPoint presentations.</p>
+            <h2>The People</h2>
+            <p class="team-intro">Three technical founders who decided to stop talking about what agencies could be and start building it instead.</p>
+
+            <div class="founder-card">
+                <div class="founder-image">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80" alt="Dr. Mark Everard">
                 </div>
-                <div class="principle-card">
-                    <div class="principle-icon">⚡</div>
-                    <h3>Speed as Structure</h3>
-                    <p>Our AI-accelerated workflows and reusable foundations aren't a feature—they're our structural advantage that competitors can't replicate.</p>
+                <div class="founder-bio">
+                    <h3>Dr. Mark Everard</h3>
+                    <p class="title">Co-Founder & Optimizely Architect</p>
+                    <p>Mark has spent over a decade deep in the Optimizely ecosystem, architecting enterprise-scale implementations for global brands. He's the kind of technical leader who sees patterns others miss—someone who can diagnose a platform issue in minutes that would take other teams days.</p>
+                    <p>Before FTT, Mark led Optimizely practices at major agencies, where he grew frustrated watching talented developers buried under process overhead and sales theater. He saw the same problem everywhere: <strong>agencies optimized for selling, not building</strong>.</p>
+                    <p>At FTT, Mark drives our technical architecture and ensures every site we deliver isn't just functional—it's elegant, maintainable, and built to scale. His philosophy: <strong>if you can't ship it in production, it doesn't count</strong>.</p>
+                    <p>Mark holds a PhD in Computer Science and has contributed to the Optimizely developer community through open-source tools and conference talks. He's based in the UK and works with clients across Europe and North America.</p>
                 </div>
-                <div class="principle-card">
-                    <div class="principle-icon">🔄</div>
-                    <h3>Iterate Forward</h3>
-                    <p>We start with working prototypes and iterate from there. Fast cycles, real feedback, continuous improvement.</p>
+            </div>
+
+            <div class="founder-card">
+                <div class="founder-image">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=800&q=80" alt="Johnny McMullan">
+                </div>
+                <div class="founder-bio">
+                    <h3>Johnny McMullan</h3>
+                    <p class="title">Co-Founder & AI Integration Lead</p>
+                    <p>Johnny is the architect behind FTT's AI-accelerated workflows. He recognized early that Claude and similar AI systems weren't just tools—they were a fundamental shift in how technical work could be done. While others were experimenting, Johnny was integrating.</p>
+                    <p>He built the custom Claude Code Skills that power FTT's rapid prototyping capability, allowing us to spin up production-quality Optimizely sites in days instead of months. This isn't prompt engineering—it's <strong>deep technical integration between AI systems and Optimizely's platform</strong>.</p>
+                    <p>Before co-founding FTT, Johnny led development teams at several agencies and saw the same bottleneck repeatedly: talented developers spending 80% of their time on repetitive tasks and only 20% on high-value problem solving. He became obsessed with flipping that ratio.</p>
+                    <p>At FTT, Johnny drives our AI strategy and ensures we're always pushing the boundaries of what's possible with AI-augmented development. His belief: <strong>AI should amplify human expertise, not replace it</strong>.</p>
+                    <p>Johnny is based in Ireland and works closely with clients to understand their challenges and prototype solutions before full-scale implementation.</p>
+                </div>
+            </div>
+
+            <div class="founder-card">
+                <div class="founder-image">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=800&q=80" alt="Koshul Naiden">
+                </div>
+                <div class="founder-bio">
+                    <h3>Koshul Naiden</h3>
+                    <p class="title">Co-Founder & Platform Engineer</p>
+                    <p>Koshul is the engineer's engineer—the person who makes sure everything actually works when it hits production. He's built the infrastructure and tooling that allows FTT to move fast without breaking things.</p>
+                    <p>His background spans full-stack development, DevOps, and platform engineering. He's the architect behind Ovie, FTT's AI assistant that handles the repetitive platform tasks that would normally slow teams down—deployments, testing, infrastructure management.</p>
+                    <p>Before FTT, Koshul worked at scale-ups and enterprises where he saw firsthand how technical debt accumulates when agencies prioritize speed over sustainability. He became convinced that <strong>speed and quality aren't trade-offs</strong>—they're the result of good systems.</p>
+                    <p>At FTT, Koshul ensures our builds are production-ready from day one. He's obsessed with automation, monitoring, and making sure our reusable foundation gets more robust with every project. His philosophy: <strong>if it's not automated, it's not repeatable</strong>.</p>
+                    <p>Koshul is based in South Africa and brings a global perspective to how we build and scale our systems.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="model-section section-reveal">
+    <!-- CTA -->
+    <section class="cta-section section-reveal">
         <div class="container">
-            <h2>Traditional Model vs. Our Approach</h2>
-            <div class="model-comparison">
-                <div class="comparison-card old-way">
-                    <h3>❌ Traditional Agency Model</h3>
-                    <ul class="comparison-list">
-                        <li><span class="cross">✕</span> Months-long sales cycles</li>
-                        <li><span class="cross">✕</span> PowerPoint presentations of concepts</li>
-                        <li><span class="cross">✕</span> High-risk commitments based on promises</li>
-                        <li><span class="cross">✕</span> Sales teams that don't build</li>
-                        <li><span class="cross">✕</span> Delivery teams that move slowly</li>
-                        <li><span class="cross">✕</span> Starting from scratch each time</li>
-                        <li><span class="cross">✕</span> Organizational drag and overhead</li>
-                    </ul>
-                </div>
-                <div class="comparison-card new-way">
-                    <h3>✓ FTT Model</h3>
-                    <ul class="comparison-list">
-                        <li><span class="check">✓</span> Working sites in 2-3 days</li>
-                        <li><span class="check">✓</span> Real, functional prototypes</li>
-                        <li><span class="check">✓</span> Low-risk next steps with proof</li>
-                        <li><span class="check">✓</span> Pre-sales specialists who build</li>
-                        <li><span class="check">✓</span> AI-accelerated delivery</li>
-                        <li><span class="check">✓</span> Reusable foundations that improve</li>
-                        <li><span class="check">✓</span> Small, founder-led, fast</li>
-                    </ul>
-                </div>
-            </div>
+            <h2>Ready to Work Together?</h2>
+            <p>Let's skip the sales cycle and start with proof.<br>We'll build something real for you.</p>
+            <a href="contact.html" class="cta-button">Get in Touch</a>
         </div>
     </section>
 
-    <section class="process section-reveal">
-        <div class="container">
-            <h2>How We Execute</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-number">1</div>
-                    <div class="timeline-content">
-                        <h3>Discovery & Analysis</h3>
-                        <p>We research your brand, analyze your competitors, and understand your requirements. Our AI systems help us rapidly synthesize this information into actionable insights.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-number">2</div>
-                    <div class="timeline-content">
-                        <h3>Rapid Prototyping</h3>
-                        <p>Using our reusable Optimizely codebase and AI-accelerated workflows, we customize and build a production-realistic site in 2-3 days. Real content, real infrastructure.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-number">3</div>
-                    <div class="timeline-content">
-                        <h3>Transparent Presentation</h3>
-                        <p>We show you the working site and are explicit: this is production-realistic, not fully integrated. More complex integrations and components come next—if you want them.</p>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-number">4</div>
-                    <div class="timeline-content">
-                        <h3>Iterate Together</h3>
-                        <p>From there, we continue in the same mode: quick prototypes, fast iteration, AI-driven build cycles. Delivery works the same before and after you sign.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="results section-reveal">
-        <div class="container">
-            <h2>Why This Works</h2>
-            <div class="results-grid">
-                <div class="result-card">
-                    <div class="result-number">🚀</div>
-                    <div class="result-label">Structural advantage competitors can't copy</div>
-                </div>
-                <div class="result-card">
-                    <div class="result-number">💡</div>
-                    <div class="result-label">AI integration that actually delivers value</div>
-                </div>
-                <div class="result-card">
-                    <div class="result-number">⚙️</div>
-                    <div class="result-label">Reusable foundations that compound</div>
-                </div>
-                <div class="result-card">
-                    <div class="result-number">🎯</div>
-                    <div class="result-label">Small, focused, no organizational drag</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="cta-section">
-        <div class="container">
-            <h2>See It In Action</h2>
-            <p>Let us build something real for you. No long sales cycle. No promises.<br>Just proof of what's possible.</p>
-            <a href="contact.html" class="cta-button">Start a Conversation</a>
-        </div>
-    </section>
-
+    <!-- Footer -->
     <footer>
         <div class="footer-grid">
             <div class="footer-section">
@@ -916,6 +778,7 @@
                     <li><a href="approach.html">Our Approach</a></li>
                     <li><a href="technology.html">Technology</a></li>
                     <li><a href="ovie.html">Ovie</a></li>
+                    <li><a href="about.html">About</a></li>
                     <li><a href="careers.html">Careers</a></li>
                 </ul>
             </div>
@@ -966,8 +829,9 @@
             });
         });
 
+        // Smooth scroll reveal animation
         const observerOptions = {
-            threshold: 0.2,
+            threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
         };
 
@@ -982,16 +846,49 @@
         document.querySelectorAll('.section-reveal').forEach(section => {
             observer.observe(section);
         });
+
+        // Fallback for sections already visible
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.section-reveal').forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+                if (isVisible) {
+                    section.classList.add('active');
+                }
+            });
+        });
     </script>
 
     <!-- Structured Data / Schema.org -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "WebPage",
-        "name": "Our Build-First Approach",
-        "description": "How FTT AI revolutionizes agency-client relationships through proof-first development",
-        "url": "https://ftt.ai/approach.html"
+        "@type": "AboutPage",
+        "name": "About FTT AI",
+        "description": "Meet the founders of FTT AI - Optimizely-first, AI-fluent team building the future of agency-client relationships",
+        "url": "https://ftt.ai/about.html",
+        "about": {
+            "@type": "Organization",
+            "name": "FTT AI",
+            "foundingDate": "2024",
+            "founders": [
+                {
+                    "@type": "Person",
+                    "name": "Dr. Mark Everard",
+                    "jobTitle": "Co-Founder & Optimizely Architect"
+                },
+                {
+                    "@type": "Person",
+                    "name": "Johnny McMullan",
+                    "jobTitle": "Co-Founder & AI Integration Lead"
+                },
+                {
+                    "@type": "Person",
+                    "name": "Koshul Naiden",
+                    "jobTitle": "Co-Founder & Platform Engineer"
+                }
+            ]
+        }
     }
     </script>
 </body>
