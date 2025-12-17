@@ -178,8 +178,22 @@
         }
 
         .culture-icon {
-            font-size: 3rem;
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             margin-bottom: 1.5rem;
+            overflow: hidden;
+        }
+
+        .culture-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
         }
 
         .culture-card h3 {
@@ -203,16 +217,48 @@
 
         .role-card {
             background: white;
-            padding: 4rem;
             border-radius: 20px;
             margin-bottom: 3rem;
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            overflow: hidden;
         }
 
         .role-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .role-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .role-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .role-card:hover .role-image img {
+            transform: scale(1.05);
+        }
+
+        .role-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(to top, rgba(255,255,255,1), transparent);
+        }
+
+        .role-content {
+            padding: 4rem;
         }
 
         .role-header {
@@ -500,34 +546,46 @@
             <h2>What Makes FTT Different</h2>
             <div class="culture-grid">
                 <div class="culture-card">
-                    <div class="culture-icon">🚀</div>
+                    <div class="culture-icon">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&q=80" alt="Speed & Impact">
+                    </div>
                     <h3>Speed & Impact</h3>
-                    <p>We move fast. AI-accelerated workflows mean we deliver in days what others take months to build. Your work creates immediate, visible impact.</p>
+                    <p>We move fast. AI-accelerated workflows mean we deliver in days what others take months to build. Your work creates immediate, visible impact. Every sprint delivers real value to clients, not just progress reports.</p>
                 </div>
                 <div class="culture-card">
-                    <div class="culture-icon">🧠</div>
+                    <div class="culture-icon">
+                        <img src="https://images.unsplash.com/photo-1655720406770-12ea329b5b61?w=400&q=80" alt="AI-First Mindset">
+                    </div>
                     <h3>AI-First Mindset</h3>
-                    <p>We don't use AI as a feature—it's fundamental to how we work. You'll be at the cutting edge of AI-augmented development.</p>
+                    <p>We don't use AI as a feature—it's fundamental to how we work. You'll be at the cutting edge of AI-augmented development, working with Claude, advanced AI systems, and tools most developers won't touch for years.</p>
                 </div>
                 <div class="culture-card">
-                    <div class="culture-icon">💡</div>
+                    <div class="culture-icon">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&q=80" alt="High Leverage">
+                    </div>
                     <h3>High Leverage</h3>
-                    <p>Small team, big impact. You'll own outcomes, not tasks. Every role here is designed for maximum leverage and autonomy.</p>
+                    <p>Small team, big impact. You'll own outcomes, not tasks. Every role here is designed for maximum leverage and autonomy. No bureaucracy, no endless meetings—just focused work that matters.</p>
                 </div>
                 <div class="culture-card">
-                    <div class="culture-icon">🎯</div>
+                    <div class="culture-icon">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&q=80" alt="Founder-Led">
+                    </div>
                     <h3>Founder-Led</h3>
-                    <p>No organizational drag. No politics. Direct collaboration with founders who build alongside you.</p>
+                    <p>No organizational drag. No politics. Direct collaboration with founders who build alongside you. Your ideas reach decision-makers immediately, and you see the impact of your work in real-time.</p>
                 </div>
                 <div class="culture-card">
-                    <div class="culture-icon">📈</div>
+                    <div class="culture-icon">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400&q=80" alt="Continuous Learning">
+                    </div>
                     <h3>Continuous Learning</h3>
-                    <p>Every project makes us smarter. Our systems compound. You'll be learning and improving faster than anywhere else.</p>
+                    <p>Every project makes us smarter. Our systems compound. You'll be learning and improving faster than anywhere else. We capture knowledge, share patterns, and build reusable foundations that make everyone better.</p>
                 </div>
                 <div class="culture-card">
-                    <div class="culture-icon">🌍</div>
+                    <div class="culture-icon">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&q=80" alt="Remote-First">
+                    </div>
                     <h3>Remote-First</h3>
-                    <p>Work from anywhere. Our workflows are designed for distributed collaboration with async-first communication.</p>
+                    <p>Work from anywhere. Our workflows are designed for distributed collaboration with async-first communication. We optimize for deep work and flexibility, not face time and office presence.</p>
                 </div>
             </div>
         </div>
@@ -540,47 +598,52 @@
 
                 <!-- Pre-Sales AI Specialist -->
                 <div class="role-card">
-                    <div class="role-header">
-                        <div class="role-title">
-                            <h3>Pre-Sales AI Specialist</h3>
-                            <div class="role-meta">
-                                <div class="meta-item">📍 Remote</div>
-                                <div class="meta-item">⏰ Full-Time</div>
-                                <div class="meta-item"><span class="badge">New Role</span></div>
+                    <div class="role-image">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1200&q=80" alt="Pre-Sales AI Specialist - Digital Innovation">
+                    </div>
+                    <div class="role-content">
+                        <div class="role-header">
+                            <div class="role-title">
+                                <h3>Pre-Sales AI Specialist</h3>
+                                <div class="role-meta">
+                                    <div class="meta-item">Remote</div>
+                                    <div class="meta-item">Full-Time</div>
+                                    <div class="meta-item"><span class="badge">New Role</span></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="role-overview">
-                        This is a new kind of role at the intersection of sales and delivery. You'll take our core codebase and AI systems to rapidly build working Optimizely sites for prospects—before they sign anything. This is one of the highest-leverage positions in the company and central to our new business model.
-                    </div>
+                        <div class="role-overview">
+                            This is a new kind of role that doesn't exist anywhere else. You'll sit at the intersection of sales and delivery, using our reusable Optimizely codebase and AI workflows to build production-realistic sites for prospects in 2-3 days—before they commit to anything. This isn't sales engineering. This isn't presales. This is building first, selling second. It's one of the highest-leverage positions in the company and central to proving our entire business model works.
+                        </div>
 
-                    <div class="role-section">
-                        <h4>What You'll Do</h4>
-                        <ul>
-                            <li>Use our reusable Optimizely codebase and AI workflows to build production-realistic sites for prospects in 2-3 days</li>
-                            <li>Customize sites based on brand analysis, competitor research, and client requirements</li>
-                            <li>Rapidly prototype client-specific functionality using AI-assisted development</li>
-                            <li>Present working sites to prospects and iterate based on feedback</li>
-                            <li>Support our build-first sales motion by creating proof before persuasion</li>
-                            <li>Collaborate with founders on refining our AI workflows and reusable patterns</li>
-                            <li>Document patterns and improvements to strengthen our foundation</li>
-                        </ul>
-                    </div>
+                        <div class="role-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Transform prospect conversations into working sites—not presentations, actual functional prototypes running on Optimizely infrastructure in 2-3 days</li>
+                                <li>Analyze brands, study competitors, understand requirements, and translate them into customized site experiences using AI-accelerated workflows</li>
+                                <li>Use Claude and our proprietary AI systems to rapidly prototype client-specific functionality that would take traditional agencies weeks</li>
+                                <li>Present real, working sites to prospects and iterate based on their feedback—showing proof, not promises</li>
+                                <li>Collaborate directly with founders to refine our reusable patterns, AI workflows, and delivery approach based on what you learn from each build</li>
+                                <li>Document what works, capture new patterns, and strengthen our foundation so each build makes the next one faster</li>
+                                <li>Own the technical narrative in prospect conversations—you built it, you present it, you iterate on it</li>
+                            </ul>
+                        </div>
 
-                    <div class="role-section">
-                        <h4>What You Bring</h4>
-                        <ul>
-                            <li>Strong technical skills with React, Next.js, and modern web development</li>
-                            <li>Experience with Optimizely CMS (or similar enterprise CMS platforms)</li>
-                            <li>Comfort working with AI coding assistants (Claude, Cursor, GitHub Copilot, etc.)</li>
-                            <li>Ability to move fast without sacrificing quality—you ship production-ready code quickly</li>
-                            <li>Strong design sense and ability to customize UIs based on brand guidelines</li>
-                            <li>Client-facing communication skills—you can explain technical decisions clearly</li>
-                            <li>Judgment and taste—you know when to use AI, when to code manually, and when to reuse vs. customize</li>
-                            <li>Entrepreneurial mindset—you thrive in ambiguity and build systems, not just sites</li>
-                        </ul>
-                    </div>
+                        <div class="role-section">
+                            <h4>What You Bring</h4>
+                            <ul>
+                                <li>Strong technical foundation in React, Next.js, TypeScript, and modern web development—you can read, understand, and extend complex codebases quickly</li>
+                                <li>Experience with enterprise CMS platforms like Optimizely, Sitecore, Contentful, or similar—you understand content modeling, structured data, and how to build flexible systems</li>
+                                <li>Proven ability to work effectively with AI coding assistants—you know how to prompt, when to trust the output, when to override it, and how to iterate quickly</li>
+                                <li>Speed without sloppiness—you ship production-ready code fast because you understand what matters and what doesn't at different stages</li>
+                                <li>Strong design sense and brand awareness—you can look at a company's existing digital presence and understand what their site should feel like</li>
+                                <li>Client-facing communication skills—you can explain technical decisions, handle feedback gracefully, and guide conversations toward productive outcomes</li>
+                                <li>Exceptional judgment—you know when to use AI, when to code manually, when to reuse existing patterns, and when to build something custom</li>
+                                <li>Entrepreneurial mindset—you thrive in ambiguity, build systems that compound, and see opportunities where others see constraints</li>
+                                <li>Curiosity about how AI changes development workflows—not just using it, but understanding how it shifts what's possible and how teams should work</li>
+                            </ul>
+                        </div>
 
                     <div class="role-section">
                         <h4>Ideal Background</h4>
@@ -593,105 +656,147 @@
                         </ul>
                     </div>
 
-                    <div class="role-section">
-                        <h4>Why This Role Matters</h4>
-                        <ul>
-                            <li>You're enabling a fundamentally new sales model that changes how agencies win work</li>
-                            <li>Every site you build strengthens our foundation and makes the next one faster</li>
-                            <li>This role becomes increasingly high-leverage as our AI systems improve</li>
-                            <li>Direct impact on company growth and ability to scale</li>
-                        </ul>
-                    </div>
+                        <div class="role-section">
+                            <h4>Why This Role Matters</h4>
+                            <ul>
+                                <li>You're enabling a fundamentally new sales model that flips the traditional agency dynamic—from persuasion to proof, from promises to reality</li>
+                                <li>Every site you build feeds back into our reusable foundation, making you faster and the entire company stronger</li>
+                                <li>As our AI systems improve, this role becomes exponentially more leveraged—you'll be building in hours what takes others weeks</li>
+                                <li>Direct, immediate impact on company growth—if we can't prove the model works at prospect stage, nothing else matters</li>
+                                <li>You're creating a new category of work that will likely become standard across the industry in 2-3 years—be there first</li>
+                            </ul>
+                        </div>
 
-                    <a href="mailto:careers@ftt.ai?subject=Application: Pre-Sales AI Specialist" class="apply-button">Apply for This Role</a>
+                        <a href="mailto:careers@ftt.ai?subject=Application: Pre-Sales AI Specialist" class="apply-button">Apply for This Role</a>
+                    </div>
                 </div>
 
                 <!-- AI-Augmented Specialist -->
                 <div class="role-card">
-                    <div class="role-header">
-                        <div class="role-title">
-                            <h3>AI-Augmented Developer</h3>
-                            <div class="role-meta">
-                                <div class="meta-item">📍 Remote</div>
-                                <div class="meta-item">⏰ Full-Time</div>
+                    <div class="role-image">
+                        <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=1200&q=80" alt="AI-Augmented Developer - Code Excellence">
+                    </div>
+                    <div class="role-content">
+                        <div class="role-header">
+                            <div class="role-title">
+                                <h3>AI-Augmented Developer</h3>
+                                <div class="role-meta">
+                                    <div class="meta-item">Remote</div>
+                                    <div class="meta-item">Full-Time</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="role-overview">
-                        You'll take prototypes from our pre-sales team and iterate them forward into production systems. This role requires strong technical judgment, the ability to work with AI tools effectively, and the autonomy to own client outcomes.
-                    </div>
+                        <div class="role-overview">
+                            You'll take working prototypes from our pre-sales team and evolve them into production-grade systems. This isn't about maintaining code—it's about taking momentum from the sales process and carrying it through to launch and beyond. You'll work directly with clients, own technical outcomes, and use AI to move at speeds traditional developers can't match. Strong judgment, technical depth, and the ability to work autonomously are essential.
+                        </div>
 
-                    <div class="role-section">
-                        <h4>What You'll Do</h4>
-                        <ul>
-                            <li>Take working prototypes and evolve them into production-grade implementations</li>
-                            <li>Build complex integrations with third-party APIs and enterprise systems</li>
-                            <li>Implement advanced Optimizely features and custom functionality</li>
-                            <li>Optimize performance, accessibility, and SEO</li>
-                            <li>Work with clients to understand requirements and deliver solutions quickly</li>
-                            <li>Use AI tools to accelerate development while maintaining quality</li>
-                            <li>Contribute to our reusable component library and patterns</li>
-                        </ul>
-                    </div>
+                        <div class="role-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Take rapid prototypes and transform them into production systems—adding robustness, performance, and polish without losing momentum</li>
+                                <li>Build complex integrations with third-party APIs, payment systems, analytics platforms, and enterprise infrastructure</li>
+                                <li>Implement advanced Optimizely features like personalization, A/B testing, content workflows, and custom functionality that pushes the platform's capabilities</li>
+                                <li>Optimize for performance, accessibility, and SEO—not as afterthoughts, but as core requirements from day one</li>
+                                <li>Work directly with clients to understand requirements, propose solutions, and deliver quickly without sacrificing quality</li>
+                                <li>Use AI tools to accelerate development—but know when to override them, when to trust them, and how to structure work for maximum AI leverage</li>
+                                <li>Build reusable components and patterns that strengthen our foundation—every project should make the next one easier</li>
+                                <li>Own client relationships post-launch—you're not just building, you're ensuring success and continuous improvement</li>
+                            </ul>
+                        </div>
 
-                    <div class="role-section">
-                        <h4>What You Bring</h4>
-                        <ul>
-                            <li>5+ years of professional web development experience</li>
-                            <li>Deep expertise with React, Next.js, TypeScript, and modern frontend tooling</li>
-                            <li>Experience with headless CMS platforms, particularly Optimizely</li>
-                            <li>Strong understanding of web performance, accessibility, and SEO best practices</li>
-                            <li>Proven ability to use AI coding assistants effectively</li>
-                            <li>Excellent judgment about when to build custom vs. use existing solutions</li>
-                            <li>Ability to work autonomously and own client relationships</li>
-                        </ul>
-                    </div>
+                        <div class="role-section">
+                            <h4>What You Bring</h4>
+                            <ul>
+                                <li>5+ years of professional web development experience, with a track record of shipping production systems that actually work at scale</li>
+                                <li>Deep expertise with React, Next.js, TypeScript, and modern frontend tooling—you know the ecosystem well enough to make good architectural decisions quickly</li>
+                                <li>Experience with headless CMS platforms, particularly Optimizely, including content modeling, GraphQL APIs, and Visual Builder customization</li>
+                                <li>Strong understanding of web performance optimization, accessibility standards (WCAG 2.1+), and modern SEO practices</li>
+                                <li>Proven ability to use AI coding assistants effectively—you're productive with Claude, Cursor, GitHub Copilot, or similar tools</li>
+                                <li>Excellent judgment about when to build custom solutions vs. use existing packages, when to optimize vs. ship, and when to refactor vs. iterate</li>
+                                <li>Ability to work autonomously, own client relationships, and manage your own time across multiple projects</li>
+                                <li>Experience with modern deployment pipelines, monitoring, and DevOps practices</li>
+                                <li>Strong communication skills—you can explain technical decisions to non-technical stakeholders clearly</li>
+                            </ul>
+                        </div>
 
-                    <a href="mailto:careers@ftt.ai?subject=Application: AI-Augmented Developer" class="apply-button">Apply for This Role</a>
+                        <div class="role-section">
+                            <h4>Why This Role Matters</h4>
+                            <ul>
+                                <li>You're proving that AI-augmented development can deliver better results faster—not just prototypes, but production systems clients bet their business on</li>
+                                <li>Every project strengthens our reusable foundations, making you and the entire team more effective over time</li>
+                                <li>You own the full cycle from prototype to production to ongoing optimization—complete ownership, complete accountability</li>
+                                <li>Direct client relationships mean you see the impact of your work immediately and build long-term partnerships</li>
+                                <li>You're defining what AI-augmented development looks like in practice, not just theory</li>
+                            </ul>
+                        </div>
+
+                        <a href="mailto:careers@ftt.ai?subject=Application: AI-Augmented Developer" class="apply-button">Apply for This Role</a>
+                    </div>
                 </div>
 
                 <!-- Ovie Platform Engineer -->
                 <div class="role-card">
-                    <div class="role-header">
-                        <div class="role-title">
-                            <h3>Ovie Platform Engineer</h3>
-                            <div class="role-meta">
-                                <div class="meta-item">📍 Remote</div>
-                                <div class="meta-item">⏰ Full-Time</div>
+                    <div class="role-image">
+                        <img src="https://images.unsplash.com/photo-1676573409278-79f1c40b5d29?w=1200&q=80" alt="Ovie Platform Engineer - AI Systems">
+                    </div>
+                    <div class="role-content">
+                        <div class="role-header">
+                            <div class="role-title">
+                                <h3>Ovie Platform Engineer</h3>
+                                <div class="role-meta">
+                                    <div class="meta-item">Remote</div>
+                                    <div class="meta-item">Full-Time</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="role-overview">
-                        Build and evolve Ovie, our AI assistant that makes sustainable delivery possible. You'll work on AI systems, monitoring infrastructure, and intelligent automation that supports clients post-launch.
-                    </div>
+                        <div class="role-overview">
+                            Build and evolve Ovie, the AI assistant that makes our entire approach sustainable. Ovie isn't a side product—it's the system that enables us to deliver fast and support clients continuously without burning out our team. You'll design AI-powered monitoring, optimization, and support systems that work 24/7, learn from every interaction, and make both clients and our team more effective. This is applied AI work with immediate, measurable impact.
+                        </div>
 
-                    <div class="role-section">
-                        <h4>What You'll Do</h4>
-                        <ul>
-                            <li>Design and build AI-powered monitoring and optimization systems</li>
-                            <li>Develop intelligent agents that analyze site performance and suggest improvements</li>
-                            <li>Create automated workflows for content optimization, SEO, and performance tuning</li>
-                            <li>Build integrations with analytics platforms, CMS systems, and deployment tools</li>
-                            <li>Design conversational interfaces for Ovie's client interactions</li>
-                            <li>Implement learning systems that improve Ovie's recommendations over time</li>
-                        </ul>
-                    </div>
+                        <div class="role-section">
+                            <h4>What You'll Do</h4>
+                            <ul>
+                                <li>Design and build AI-powered monitoring systems that watch site performance, security, content quality, and user experience continuously</li>
+                                <li>Develop intelligent agents that analyze patterns, identify issues, and generate actionable recommendations—not just alerts</li>
+                                <li>Create automated workflows for content optimization, SEO improvements, performance tuning, and security monitoring that actually work in production</li>
+                                <li>Build deep integrations with analytics platforms (Google Analytics, Mixpanel), CMS systems (Optimizely), deployment pipelines, and monitoring tools</li>
+                                <li>Design conversational interfaces that let clients interact with Ovie naturally—asking questions, getting explanations, approving changes</li>
+                                <li>Implement learning systems that capture delivery knowledge, improve recommendations over time, and make Ovie smarter with each client interaction</li>
+                                <li>Work directly with clients to understand what support they actually need vs. what they think they need</li>
+                                <li>Balance automation with human judgment—Ovie should be helpful, not presumptuous</li>
+                            </ul>
+                        </div>
 
-                    <div class="role-section">
-                        <h4>What You Bring</h4>
-                        <ul>
-                            <li>Strong full-stack development skills (Node.js, Python, or similar)</li>
-                            <li>Experience working with LLM APIs (OpenAI, Anthropic, etc.)</li>
-                            <li>Understanding of web performance monitoring and optimization</li>
-                            <li>Familiarity with AI/ML concepts and prompt engineering</li>
-                            <li>Experience building automation and monitoring systems</li>
-                            <li>Ability to design systems that balance automation with human oversight</li>
-                        </ul>
-                    </div>
+                        <div class="role-section">
+                            <h4>What You Bring</h4>
+                            <ul>
+                                <li>Strong full-stack development skills with Node.js, Python, or similar—you can build backend systems, APIs, and integrations quickly</li>
+                                <li>Hands-on experience working with LLM APIs (Anthropic Claude, OpenAI, etc.) in production environments, not just experiments</li>
+                                <li>Deep understanding of web performance monitoring, optimization techniques, and how modern sites actually work under the hood</li>
+                                <li>Solid grasp of AI/ML concepts, prompt engineering, and how to build reliable systems on top of probabilistic models</li>
+                                <li>Experience building automation and monitoring systems that run reliably without constant babysitting</li>
+                                <li>Ability to design systems that balance automation with human oversight—knowing when to act automatically and when to ask first</li>
+                                <li>Understanding of SEO, analytics, content strategy, and digital marketing—enough to build tools that actually help</li>
+                                <li>Product thinking—you don't just build what's requested, you understand the underlying problem and solve it well</li>
+                                <li>Comfort with ambiguity—Ovie is still evolving, and you'll help define what it becomes</li>
+                            </ul>
+                        </div>
 
-                    <a href="mailto:careers@ftt.ai?subject=Application: Ovie Platform Engineer" class="apply-button">Apply for This Role</a>
+                        <div class="role-section">
+                            <h4>Why This Role Matters</h4>
+                            <ul>
+                                <li>Ovie is what makes our fast-delivery model sustainable—without it, we'd need to scale headcount linearly, which kills the economics</li>
+                                <li>You're building systems that make both clients and our team more effective—true leverage, not just automation for automation's sake</li>
+                                <li>Every improvement to Ovie benefits all clients simultaneously—your work compounds across the entire client base</li>
+                                <li>You're defining what AI-powered support looks like in practice, creating a category that doesn't really exist yet</li>
+                                <li>This role becomes more important and more interesting as AI capabilities improve—you're positioned at the frontier</li>
+                            </ul>
+                        </div>
+
+                        <a href="mailto:careers@ftt.ai?subject=Application: Ovie Platform Engineer" class="apply-button">Apply for This Role</a>
+                    </div>
                 </div>
 
             </div>
