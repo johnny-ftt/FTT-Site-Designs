@@ -402,41 +402,157 @@
         }
 
         /* CTA */
-        .cta-section {
-            background: var(--dark-gradient);
+        /* Contact Section */
+        .contact-section {
+            background: white;
+        }
+
+        .contact-section h2 {
             text-align: center;
-            color: white;
-            padding: 8rem 5%;
-        }
-
-        .cta-section h2 {
-            color: white;
             font-size: 3.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
-        .cta-section p {
-            font-size: 1.4rem;
+        .contact-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 5rem;
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .contact-info p {
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.8;
             margin-bottom: 3rem;
-            opacity: 0.9;
         }
 
-        .cta-button {
-            display: inline-block;
-            padding: 1.2rem 3rem;
+        .contact-methods {
+            margin-top: 3rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .method-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            flex-shrink: 0;
+        }
+
+        .method-content h4 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .method-content a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .method-content a:hover {
+            color: #764ba2;
+        }
+
+        .method-content p {
+            color: #4a5568;
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        /* Form Styles */
+        .contact-form {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid transparent;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1.2rem;
             background: var(--primary-gradient);
             color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
+            border: none;
+            border-radius: 10px;
             font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
         }
 
-        .cta-button:hover {
+        .submit-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.6);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
         }
 
         /* Footer */
@@ -593,16 +709,25 @@
                 font-size: 1rem;
             }
 
-            .cta-section {
-                padding: 5rem 5%;
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
             }
 
-            .cta-section h2 {
+            .contact-section h2 {
                 font-size: 2.5rem;
             }
 
-            .cta-section p {
-                font-size: 1.2rem;
+            .contact-info h3 {
+                font-size: 2rem;
+            }
+
+            .contact-info p {
+                font-size: 1.1rem;
+            }
+
+            .contact-form {
+                padding: 2rem;
             }
 
             .footer-grid {
@@ -627,7 +752,7 @@
                 <li><a href="ovie.html">Ovie</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="careers.html">Careers</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="about.html#contact">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -756,12 +881,88 @@
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="cta-section section-reveal">
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section section-reveal">
         <div class="container">
-            <h2>Ready to Work Together?</h2>
-            <p>Let's skip the sales cycle and start with proof.<br>We'll build something real for you.</p>
-            <a href="contact.html" class="cta-button">Get in Touch</a>
+            <h2>Get in Touch</h2>
+            <p class="contact-intro">Ready to see what AI-accelerated delivery looks like? We'll show you, not tell you. Reach out and let's start with proof.</p>
+
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Let's Build Something</h3>
+                    <p>We don't do long sales cycles or endless discovery calls. If you're considering re-platforming, a redesign, or optimization-led change, we can build you a working Optimizely site to prove what's possible.</p>
+                    <p>Fill out the form and we'll get back to you within 24 hours.</p>
+
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="method-icon">📧</div>
+                            <div class="method-content">
+                                <h4>Email</h4>
+                                <a href="mailto:hello@ftt.ai">hello@ftt.ai</a>
+                                <p>For general inquiries</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon">💼</div>
+                            <div class="method-content">
+                                <h4>New Projects</h4>
+                                <a href="mailto:projects@ftt.ai">projects@ftt.ai</a>
+                                <p>Let's discuss your project</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="method-icon">🚀</div>
+                            <div class="method-content">
+                                <h4>Careers</h4>
+                                <a href="mailto:careers@ftt.ai">careers@ftt.ai</a>
+                                <p>Join our team</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Your Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="interest">I'm interested in... *</label>
+                            <select id="interest" name="interest" required>
+                                <option value="">Select an option</option>
+                                <option value="new-site">Building a new Optimizely site</option>
+                                <option value="replatform">Re-platforming to Optimizely</option>
+                                <option value="redesign">Website redesign</option>
+                                <option value="optimization">Optimization & performance</option>
+                                <option value="ovie">Ovie AI assistant</option>
+                                <option value="career">Career opportunities</option>
+                                <option value="other">Something else</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Tell us about your project *</label>
+                            <textarea id="message" name="message" required placeholder="What are you looking to build? What challenges are you facing? The more context you provide, the better we can help."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button">Send Message</button>
+                    </form>
+                </div>
+            </div>
         </div>
     </section>
 

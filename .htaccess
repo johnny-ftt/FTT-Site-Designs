@@ -4,6 +4,10 @@
 RewriteEngine On
 RewriteBase /
 
+# Redirect contact page to About page contact section
+RewriteRule ^contact\.html$ /about.html#contact [R=301,L,NE]
+RewriteRule ^contact$ /about#contact [R=301,L,NE]
+
 # Remove .html extension from URLs
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
