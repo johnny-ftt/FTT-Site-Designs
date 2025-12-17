@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Approach - FTT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --tertiary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            --text-dark: #1a1a2e;
+            --text-light: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-gradient);
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 5% 4rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1920&q=80') center/cover;
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 5%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .section-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+        }
+
+        /* Shift Section */
+        .shift-section {
+            background: white;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .content-text h2 {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .content-text p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        .content-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            height: 500px;
+        }
+
+        .content-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .content-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Principles Section */
+        .principles {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .principles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .principle-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .principle-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .principle-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--primary-gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .principle-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .principle-card p {
+            color: #4a5568;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Model Section */
+        .model-section {
+            background: white;
+        }
+
+        .model-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .comparison-card {
+            padding: 3rem;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .old-way {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+        }
+
+        .new-way {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border: 2px solid #667eea;
+        }
+
+        .comparison-card h3 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .comparison-list {
+            list-style: none;
+        }
+
+        .comparison-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            font-size: 1.1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .comparison-list li:last-child {
+            border-bottom: none;
+        }
+
+        .check, .cross {
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .check { color: #48bb78; }
+        .cross { color: #f56565; }
+
+        /* Process Section */
+        .process {
+            background: var(--dark-gradient);
+            color: white;
+        }
+
+        .process h2 {
+            color: white;
+            text-align: center;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 4rem auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content {
+            grid-column: 2;
+        }
+
+        .timeline-item:nth-child(even) .timeline-number {
+            left: auto;
+            right: -3rem;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .timeline-number {
+            position: absolute;
+            left: -3rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: var(--tertiary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 900;
+            z-index: 1;
+        }
+
+        .timeline-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-content p {
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* Results Section */
+        .results {
+            background: white;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .result-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .result-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .result-label {
+            font-size: 1.1rem;
+            color: #4a5568;
+            line-height: 1.5;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+            padding: 8rem 5%;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-section p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 4rem 5%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .content-grid,
+            .model-comparison {
+                grid-template-columns: 1fr;
+            }
+
+            .principles-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 0;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-number {
+                left: -1rem !important;
+                right: auto !important;
+            }
+
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .results-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">FTT</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="approach.html">Our Approach</a></li>
+                <li><a href="technology.html">AI Technology</a></li>
+                <li><a href="ovie.html">Ovie</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Pre-Sales Becomes Delivery</h1>
+            <p class="subtitle">We've fundamentally restructured how agency-client relationships begin. Instead of pitching what we could build, we lead by building. Real sites. Real proof. Before you commit to anything.</p>
+        </div>
+    </section>
+
+    <section class="shift-section section-reveal">
+        <div class="container">
+            <div class="content-grid">
+                <div class="content-text">
+                    <h2>The Shift We're Seeing</h2>
+                    <p>Something has fundamentally changed in how fast we can actually build.</p>
+                    <p>On our recent Optimizely SaaS project, we went from no code at all to a real, working site in about 2–3 days. Not a concept. Not a mock. A fully functional site running on Optimizely infrastructure.</p>
+                    <p>That build wasn't a one-off. The way it's structured means we can now reuse it—reskin it quickly, spin up custom content types fast, and adapt it for other brands.</p>
+                    <div class="highlight-box">
+                        <p>The takeaway is simple: we can now show real things, very early.</p>
+                    </div>
+                </div>
+                <div class="content-image">
+                    <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80" alt="Fast Development">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="principles section-reveal">
+        <div class="container">
+            <h2>Our Core Principles</h2>
+            <div class="principles-grid">
+                <div class="principle-card">
+                    <div class="principle-icon">🎯</div>
+                    <h3>Proof Over Persuasion</h3>
+                    <p>We don't sell you on what we could do. We show you what we've already done. Working sites replace PowerPoint presentations.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-icon">⚡</div>
+                    <h3>Speed as Structure</h3>
+                    <p>Our AI-accelerated workflows and reusable foundations aren't a feature—they're our structural advantage that competitors can't replicate.</p>
+                </div>
+                <div class="principle-card">
+                    <div class="principle-icon">🔄</div>
+                    <h3>Iterate Forward</h3>
+                    <p>We start with working prototypes and iterate from there. Fast cycles, real feedback, continuous improvement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="model-section section-reveal">
+        <div class="container">
+            <h2>Traditional Model vs. Our Approach</h2>
+            <div class="model-comparison">
+                <div class="comparison-card old-way">
+                    <h3>❌ Traditional Agency Model</h3>
+                    <ul class="comparison-list">
+                        <li><span class="cross">✕</span> Months-long sales cycles</li>
+                        <li><span class="cross">✕</span> PowerPoint presentations of concepts</li>
+                        <li><span class="cross">✕</span> High-risk commitments based on promises</li>
+                        <li><span class="cross">✕</span> Sales teams that don't build</li>
+                        <li><span class="cross">✕</span> Delivery teams that move slowly</li>
+                        <li><span class="cross">✕</span> Starting from scratch each time</li>
+                        <li><span class="cross">✕</span> Organizational drag and overhead</li>
+                    </ul>
+                </div>
+                <div class="comparison-card new-way">
+                    <h3>✓ FTT Model</h3>
+                    <ul class="comparison-list">
+                        <li><span class="check">✓</span> Working sites in 2-3 days</li>
+                        <li><span class="check">✓</span> Real, functional prototypes</li>
+                        <li><span class="check">✓</span> Low-risk next steps with proof</li>
+                        <li><span class="check">✓</span> Pre-sales specialists who build</li>
+                        <li><span class="check">✓</span> AI-accelerated delivery</li>
+                        <li><span class="check">✓</span> Reusable foundations that improve</li>
+                        <li><span class="check">✓</span> Small, founder-led, fast</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="process section-reveal">
+        <div class="container">
+            <h2>How We Execute</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-number">1</div>
+                    <div class="timeline-content">
+                        <h3>Discovery & Analysis</h3>
+                        <p>We research your brand, analyze your competitors, and understand your requirements. Our AI systems help us rapidly synthesize this information into actionable insights.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">2</div>
+                    <div class="timeline-content">
+                        <h3>Rapid Prototyping</h3>
+                        <p>Using our reusable Optimizely codebase and AI-accelerated workflows, we customize and build a production-realistic site in 2-3 days. Real content, real infrastructure.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">3</div>
+                    <div class="timeline-content">
+                        <h3>Transparent Presentation</h3>
+                        <p>We show you the working site and are explicit: this is production-realistic, not fully integrated. More complex integrations and components come next—if you want them.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-number">4</div>
+                    <div class="timeline-content">
+                        <h3>Iterate Together</h3>
+                        <p>From there, we continue in the same mode: quick prototypes, fast iteration, AI-driven build cycles. Delivery works the same before and after you sign.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="results section-reveal">
+        <div class="container">
+            <h2>Why This Works</h2>
+            <div class="results-grid">
+                <div class="result-card">
+                    <div class="result-number">🚀</div>
+                    <div class="result-label">Structural advantage competitors can't copy</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">💡</div>
+                    <div class="result-label">AI integration that actually delivers value</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">⚙️</div>
+                    <div class="result-label">Reusable foundations that compound</div>
+                </div>
+                <div class="result-card">
+                    <div class="result-number">🎯</div>
+                    <div class="result-label">Small, focused, no organizational drag</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>See It In Action</h2>
+            <p>Let us build something real for you. No long sales cycle. No promises.<br>Just proof of what's possible.</p>
+            <a href="contact.html" class="cta-button">Start a Conversation</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <div class="footer-logo">FTT</div>
+                <p>Building the future of agency-client relationships through AI-accelerated delivery and proof-first engagement.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="approach.html">Our Approach</a></li>
+                    <li><a href="technology.html">Technology</a></li>
+                    <li><a href="ovie.html">Ovie</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Optimizely Sites</a></li>
+                    <li><a href="#">Re-platforming</a></li>
+                    <li><a href="#">AI Integration</a></li>
+                    <li><a href="#">Optimization</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="contact.html">Get in Touch</a></li>
+                    <li><a href="mailto:hello@ftt.ai">hello@ftt.ai</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 FTT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-reveal').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

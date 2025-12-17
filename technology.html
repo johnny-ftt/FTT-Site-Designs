@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Technology - FTT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --tertiary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            --text-dark: #1a1a2e;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-gradient);
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 5% 4rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=1920&q=80') center/cover;
+            opacity: 0.15;
+            animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        section {
+            padding: 6rem 5%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .section-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+        }
+
+        /* AI Stack Section */
+        .ai-stack {
+            background: white;
+        }
+
+        .stack-intro {
+            max-width: 900px;
+            margin: 0 auto 4rem;
+            text-align: center;
+        }
+
+        .stack-intro h2 {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stack-intro p {
+            font-size: 1.3rem;
+            color: #4a5568;
+            line-height: 1.8;
+        }
+
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .stack-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .stack-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: var(--primary-gradient);
+            opacity: 0.1;
+            border-radius: 50%;
+            transform: translate(50%, -50%);
+        }
+
+        .stack-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .stack-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stack-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .stack-card p {
+            color: #4a5568;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-list {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tech-tag {
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        /* Claude Integration Section */
+        .claude-section {
+            background: var(--dark-gradient);
+            color: white;
+        }
+
+        .claude-section h2 {
+            color: white;
+            text-align: center;
+        }
+
+        .integration-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .integration-content h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .integration-content p {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .integration-features {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .integration-features li {
+            padding: 1rem 0;
+            padding-left: 2.5rem;
+            position: relative;
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .integration-features li::before {
+            content: '⚡';
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+        }
+
+        .integration-image {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .integration-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Capabilities Section */
+        .capabilities {
+            background: white;
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .capability-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .capability-card:hover {
+            transform: translateY(-10px);
+            border: 2px solid #667eea;
+        }
+
+        .capability-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: var(--tertiary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .capability-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .capability-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
+        /* Reusable Foundation Section */
+        .foundation {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .foundation-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .foundation-content h2 {
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 2rem;
+        }
+
+        .foundation-content p {
+            font-size: 1.3rem;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .foundation-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .metric {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .metric-value {
+            font-size: 3.5rem;
+            font-weight: 900;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            color: #4a5568;
+        }
+
+        /* Competitive Edge Section */
+        .competitive-edge {
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+        }
+
+        .competitive-edge h2 {
+            color: white;
+        }
+
+        .edge-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .edge-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-align: left;
+        }
+
+        .edge-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .edge-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--dark-gradient);
+            color: white;
+            text-align: center;
+            padding: 8rem 5%;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-section p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 4rem 5%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.6;
+        }
+
+        @media (max-width: 1024px) {
+            .stack-grid,
+            .integration-grid,
+            .edge-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .capabilities-grid,
+            .foundation-metrics {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">FTT</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="approach.html">Our Approach</a></li>
+                <li><a href="technology.html">AI Technology</a></li>
+                <li><a href="ovie.html">Ovie</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>AI That Actually Delivers</h1>
+            <p class="subtitle">We've built proprietary AI systems that collapse the time from concept to working site from months to days. This isn't automation—it's a fundamental reimagining of how digital experiences get built.</p>
+        </div>
+    </section>
+
+    <section class="ai-stack section-reveal">
+        <div class="container">
+            <div class="stack-intro">
+                <h2>Our AI Technology Stack</h2>
+                <p>We've developed a comprehensive AI infrastructure that powers every aspect of our delivery—from initial discovery to production deployment. This is our competitive moat.</p>
+            </div>
+            <div class="stack-grid">
+                <div class="stack-card">
+                    <div class="stack-icon">🧠</div>
+                    <h3>Claude Code Skills</h3>
+                    <p>Deep integration with Claude's AI capabilities for intelligent code generation, pattern recognition, and component reuse. Our AI understands architectural patterns and generates production-quality code.</p>
+                    <ul class="tech-list">
+                        <li class="tech-tag">Code Generation</li>
+                        <li class="tech-tag">Pattern Matching</li>
+                        <li class="tech-tag">Auto-Refactoring</li>
+                    </ul>
+                </div>
+
+                <div class="stack-card">
+                    <div class="stack-icon">⚙️</div>
+                    <h3>Optimizely Visual Builder Integration</h3>
+                    <p>Custom AI workflows that understand Optimizely's architecture and can rapidly scaffold sites, content types, and components with production-level quality.</p>
+                    <ul class="tech-list">
+                        <li class="tech-tag">Content Type Generation</li>
+                        <li class="tech-tag">Component Library</li>
+                        <li class="tech-tag">Visual Builder AI</li>
+                    </ul>
+                </div>
+
+                <div class="stack-card">
+                    <div class="stack-icon">🎨</div>
+                    <h3>Design-to-Code Pipeline</h3>
+                    <p>AI-powered systems that translate brand requirements and design concepts directly into functional, responsive components—no manual translation needed.</p>
+                    <ul class="tech-list">
+                        <li class="tech-tag">Brand Analysis</li>
+                        <li class="tech-tag">Component Generation</li>
+                        <li class="tech-tag">Responsive Design</li>
+                    </ul>
+                </div>
+
+                <div class="stack-card">
+                    <div class="stack-icon">📊</div>
+                    <h3>Ovie - Our AI Assistant</h3>
+                    <p>An always-on AI system that supports clients post-launch with content optimization, performance monitoring, and continuous improvement recommendations.</p>
+                    <ul class="tech-list">
+                        <li class="tech-tag">24/7 Support</li>
+                        <li class="tech-tag">Content Optimization</li>
+                        <li class="tech-tag">Performance Insights</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="claude-section section-reveal">
+        <div class="container">
+            <h2>The Claude Code Advantage</h2>
+            <div class="integration-grid">
+                <div class="integration-content">
+                    <h3>AI-Accelerated Development</h3>
+                    <p>We've built deep, custom integration between Claude's AI capabilities and the Optimizely platform. This combination allows us to move at speeds that simply weren't possible before.</p>
+                    <p>Our AI doesn't just write code—it understands context, follows patterns, reuses components, and generates production-quality implementations in minutes instead of weeks.</p>
+                    <ul class="integration-features">
+                        <li>Intelligent component generation from requirements</li>
+                        <li>Automatic pattern recognition and reuse</li>
+                        <li>Production-quality code on first generation</li>
+                        <li>Context-aware customization for each brand</li>
+                    </ul>
+                </div>
+                <div class="integration-image">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80" alt="AI Development">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="capabilities section-reveal">
+        <div class="container">
+            <h2>What This Enables</h2>
+            <div class="capabilities-grid">
+                <div class="capability-card">
+                    <div class="capability-number">01</div>
+                    <h3>Rapid Site Generation</h3>
+                    <p>From zero to working Optimizely site in 2-3 days. Not a concept—a real, functional site with production-quality code.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-number">02</div>
+                    <h3>Smart Component Library</h3>
+                    <p>AI-managed library of reusable components that improves with each project. Patterns get smarter, implementations get faster.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-number">03</div>
+                    <h3>Brand Customization</h3>
+                    <p>AI analyzes brand guidelines and automatically generates customized themes, components, and content structures.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-number">04</div>
+                    <h3>Content Type Generation</h3>
+                    <p>Automatically scaffold custom Optimizely content types based on requirements—complete with fields, validations, and templates.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-number">05</div>
+                    <h3>Performance Optimization</h3>
+                    <p>AI continuously analyzes and optimizes code for performance, accessibility, and SEO—before and after launch.</p>
+                </div>
+                <div class="capability-card">
+                    <div class="capability-number">06</div>
+                    <h3>Continuous Learning</h3>
+                    <p>Every project feeds back into our systems, making us faster and smarter with each build. Compound improvements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="foundation section-reveal">
+        <div class="container">
+            <div class="foundation-content">
+                <h2>Reusable Optimizely Foundation</h2>
+                <p>At the core is a battle-tested, production-grade Optimizely codebase that serves as the foundation for every project. Combined with AI, this creates exponential speed advantages.</p>
+                <p>While other agencies start from scratch each time, we build on proven foundations that improve with each project.</p>
+                <div class="foundation-metrics">
+                    <div class="metric">
+                        <div class="metric-value">10x</div>
+                        <div class="metric-label">Faster than traditional development</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">100%</div>
+                        <div class="metric-label">Production-ready code quality</div>
+                    </div>
+                    <div class="metric">
+                        <div class="metric-value">∞</div>
+                        <div class="metric-label">Continuous improvement cycles</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="competitive-edge section-reveal">
+        <div class="container">
+            <h2>Why Competitors Can't Copy This</h2>
+            <div class="edge-grid">
+                <div class="edge-card">
+                    <h3>Structural Advantage</h3>
+                    <p>Traditional agencies can't justify leading with real work. Their cost structures, organizational models, and sales processes prevent them from building before contracts are signed. Our AI-accelerated approach makes this not just possible, but profitable.</p>
+                </div>
+                <div class="edge-card">
+                    <h3>Deep Integration</h3>
+                    <p>We haven't just adopted AI tools—we've built custom integrations between Claude, Optimizely, and our proprietary workflows. This level of integration takes months to develop and requires deep technical expertise in both platforms.</p>
+                </div>
+                <div class="edge-card">
+                    <h3>Compound Learning</h3>
+                    <p>Our reusable foundation and AI systems create a flywheel effect. Each project makes us faster. Each component strengthens our library. Each pattern improves our AI. Competitors starting today would be months behind and falling further back.</p>
+                </div>
+                <div class="edge-card">
+                    <h3>Small & Fast</h3>
+                    <p>We're small, founder-led, with no organizational drag. We can move fast, experiment, and iterate in ways larger agencies simply can't. Our structure is designed for speed, not headcount.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Experience the Difference</h2>
+            <p>See what AI-accelerated development actually looks like.<br>We'll show you, not tell you.</p>
+            <a href="contact.html" class="cta-button">Let's Build Something</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <div class="footer-logo">FTT</div>
+                <p>Building the future of agency-client relationships through AI-accelerated delivery and proof-first engagement.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="approach.html">Our Approach</a></li>
+                    <li><a href="technology.html">Technology</a></li>
+                    <li><a href="ovie.html">Ovie</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Optimizely Sites</a></li>
+                    <li><a href="#">Re-platforming</a></li>
+                    <li><a href="#">AI Integration</a></li>
+                    <li><a href="#">Optimization</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="contact.html">Get in Touch</a></li>
+                    <li><a href="mailto:hello@ftt.ai">hello@ftt.ai</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 FTT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-reveal').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

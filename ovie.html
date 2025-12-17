@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ovie - AI Assistant - FTT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --tertiary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --ovie-gradient: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            --dark-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            --text-dark: #1a1a2e;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--ovie-gradient);
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 5% 4rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1920&q=80') center/cover;
+            opacity: 0.1;
+            animation: slowZoom 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes slowZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-text h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .hero-visual {
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+
+        .ovie-avatar {
+            width: 120px;
+            height: 120px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .chat-preview {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .chat-message {
+            background: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 0.8rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 0.5rem;
+            padding: 1rem;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #667eea;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-10px); }
+        }
+
+        section {
+            padding: 6rem 5%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .section-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+        }
+
+        /* What is Ovie */
+        .what-is-ovie {
+            background: white;
+        }
+
+        .intro-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .intro-text h2 {
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .intro-text p {
+            font-size: 1.3rem;
+            line-height: 1.8;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
+
+        .intro-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            height: 500px;
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Features Section */
+        .features {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        /* How It Works */
+        .how-ovie-works {
+            background: white;
+        }
+
+        .workflow-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .workflow-step {
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .workflow-step::after {
+            content: '→';
+            position: absolute;
+            right: -1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #667eea;
+            opacity: 0.3;
+        }
+
+        .workflow-step:last-child::after {
+            display: none;
+        }
+
+        .workflow-number {
+            width: 70px;
+            height: 70px;
+            background: var(--tertiary-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            margin: 0 auto 1.5rem;
+            color: white;
+        }
+
+        .workflow-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .workflow-step p {
+            color: #4a5568;
+            font-size: 0.95rem;
+        }
+
+        /* Use Cases */
+        .use-cases {
+            background: var(--dark-gradient);
+            color: white;
+        }
+
+        .use-cases h2 {
+            color: white;
+            text-align: center;
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .case-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .case-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .case-card p {
+            opacity: 0.9;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-example {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border-left: 3px solid #4facfe;
+            font-style: italic;
+            opacity: 0.8;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-item {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            flex-shrink: 0;
+        }
+
+        .benefit-content h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .benefit-content p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        /* Integration Section */
+        .integration {
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+        }
+
+        .integration h2 {
+            color: white;
+        }
+
+        .integration p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .integration-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .integration-feature {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .integration-feature h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--dark-gradient);
+            color: white;
+            text-align: center;
+            padding: 8rem 5%;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-section p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 4rem 5%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.6;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-content,
+            .intro-grid,
+            .cases-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid,
+            .integration-features {
+                grid-template-columns: 1fr;
+            }
+
+            .workflow-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .workflow-step::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .workflow-grid,
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">FTT</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="approach.html">Our Approach</a></li>
+                <li><a href="technology.html">AI Technology</a></li>
+                <li><a href="ovie.html">Ovie</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Meet Ovie</h1>
+                <p class="subtitle">Your always-on AI assistant that makes our approach sustainable. Ovie supports clients post-launch with content optimization, performance monitoring, and continuous improvement—24/7.</p>
+            </div>
+            <div class="hero-visual">
+                <div class="ovie-avatar">🤖</div>
+                <div class="chat-preview">
+                    <div class="chat-message">
+                        "I noticed your homepage load time increased. I've optimized the images and updated your caching strategy. Performance is back to normal."
+                    </div>
+                    <div class="chat-message">
+                        "Your latest blog post could benefit from better SEO. I've drafted some meta descriptions for your review."
+                    </div>
+                    <div class="typing-indicator">
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                        <div class="typing-dot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="what-is-ovie section-reveal">
+        <div class="container">
+            <div class="intro-grid">
+                <div class="intro-text">
+                    <h2>The System That Makes It Work</h2>
+                    <p>Ovie isn't a side product—it's core to how our entire approach functions. While we can build sites incredibly fast, sustainable delivery requires ongoing support and optimization.</p>
+                    <p>Ovie provides that support layer, acting as an always-on AI assistant that helps clients maintain, optimize, and improve their sites after launch.</p>
+                    <p>This means faster launches, less friction post-go-live, and reduced dependency on ongoing agency involvement. Clients get the best of both worlds: rapid delivery and continuous support.</p>
+                </div>
+                <div class="intro-image">
+                    <img src="https://images.unsplash.com/photo-1676573409278-79f1c40b5d29?w=800&q=80" alt="AI Assistant">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features section-reveal">
+        <div class="container">
+            <h2>What Ovie Does</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Performance Monitoring</h3>
+                    <p>Continuously monitors site performance, identifies bottlenecks, and proactively suggests or implements optimizations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">✍️</div>
+                    <h3>Content Optimization</h3>
+                    <p>Analyzes content effectiveness, suggests improvements for SEO, readability, and engagement based on real data.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>SEO Insights</h3>
+                    <p>Monitors search rankings, identifies opportunities, and provides actionable recommendations to improve visibility.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Security Monitoring</h3>
+                    <p>Watches for security issues, outdated dependencies, and potential vulnerabilities. Alerts you before problems occur.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Analytics & Insights</h3>
+                    <p>Interprets analytics data and provides clear, actionable insights about user behavior and site effectiveness.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>24/7 Support</h3>
+                    <p>Always available to answer questions, troubleshoot issues, and help your team make the most of your Optimizely site.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-ovie-works section-reveal">
+        <div class="container">
+            <h2>How Ovie Works</h2>
+            <div class="workflow-grid">
+                <div class="workflow-step">
+                    <div class="workflow-number">1</div>
+                    <h3>Monitor</h3>
+                    <p>Continuously watches your site's performance, content, and user behavior</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="workflow-number">2</div>
+                    <h3>Analyze</h3>
+                    <p>Uses AI to identify patterns, issues, and opportunities for improvement</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="workflow-number">3</div>
+                    <h3>Recommend</h3>
+                    <p>Provides clear, actionable suggestions with context and priority</p>
+                </div>
+                <div class="workflow-step">
+                    <div class="workflow-number">4</div>
+                    <h3>Optimize</h3>
+                    <p>With approval, implements improvements automatically or guides your team through changes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="use-cases section-reveal">
+        <div class="container">
+            <h2>Ovie in Action</h2>
+            <div class="cases-grid">
+                <div class="case-card">
+                    <h3>Proactive Performance</h3>
+                    <p>Ovie detects when a new content deployment causes performance degradation. Instead of waiting for users to complain, Ovie identifies the issue, analyzes the cause, and either fixes it automatically or provides a detailed plan for your team.</p>
+                    <div class="case-example">
+                        "I noticed the homepage load time increased by 40% after the latest content update. The issue is unoptimized images in the new hero section. I've compressed them and updated the deployment. Load time is back to normal."
+                    </div>
+                </div>
+                <div class="case-card">
+                    <h3>Content Guidance</h3>
+                    <p>When your team creates new content, Ovie reviews it against SEO best practices, readability standards, and your brand guidelines—providing suggestions before it goes live.</p>
+                    <div class="case-example">
+                        "Your new product page looks great! I have a few suggestions: the meta description is too long (170 chars, should be ~155), and adding a FAQ section could help capture more long-tail keywords. Would you like me to draft that?"
+                    </div>
+                </div>
+                <div class="case-card">
+                    <h3>Security Alerts</h3>
+                    <p>Ovie monitors dependencies and security advisories, alerting you to potential vulnerabilities and providing clear upgrade paths before issues become critical.</p>
+                    <div class="case-example">
+                        "A security advisory was just published for one of our dependencies. The risk is low, but I recommend updating to version 2.1.4. I've tested the update in our staging environment and it's compatible. Ready to deploy?"
+                    </div>
+                </div>
+                <div class="case-card">
+                    <h3>Analytics Translation</h3>
+                    <p>Instead of drowning in analytics data, Ovie synthesizes insights into clear, actionable recommendations based on your business goals.</p>
+                    <div class="case-example">
+                        "I've been analyzing user behavior and noticed 65% of visitors who view the pricing page don't convert. However, those who read the case studies first have a 3x higher conversion rate. Consider adding case study links to the pricing page."
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="benefits section-reveal">
+        <div class="container">
+            <h2>Why Clients Love Ovie</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="benefit-icon">⚡</div>
+                    <div class="benefit-content">
+                        <h3>Faster Issue Resolution</h3>
+                        <p>Problems get identified and solved before they impact users. Ovie catches issues in real-time and either fixes them automatically or provides clear guidance.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">💰</div>
+                    <div class="benefit-content">
+                        <h3>Reduced Ongoing Costs</h3>
+                        <p>Less dependency on agency retainers for routine optimization and support. Ovie handles day-to-day improvements, freeing up your budget for strategic initiatives.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">📚</div>
+                    <div class="benefit-content">
+                        <h3>Knowledge Transfer</h3>
+                        <p>Ovie doesn't just do the work—it explains what it's doing and why. Your team learns and becomes more self-sufficient over time.</p>
+                    </div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon">🎯</div>
+                    <div class="benefit-content">
+                        <h3>Continuous Improvement</h3>
+                        <p>Your site doesn't stagnate after launch. Ovie continuously finds ways to improve performance, SEO, and user experience based on real data.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="integration section-reveal">
+        <div class="container">
+            <h2>Included with Every Site</h2>
+            <p>Ovie isn't sold separately—it comes with every site we deliver. This is how we ensure quality and sustainability at scale.</p>
+            <div class="integration-features">
+                <div class="integration-feature">
+                    <h4>Day One Ready</h4>
+                    <p>Ovie is configured and operational from launch, already familiar with your site's architecture and goals.</p>
+                </div>
+                <div class="integration-feature">
+                    <h4>Learns Your Business</h4>
+                    <p>Over time, Ovie learns your preferences, priorities, and patterns—making recommendations increasingly relevant.</p>
+                </div>
+                <div class="integration-feature">
+                    <h4>Always Improving</h4>
+                    <p>As our AI systems evolve, Ovie gets smarter. All clients benefit from continuous platform improvements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Experience Ovie</h2>
+            <p>Every site we build comes with Ovie included.<br>See how AI-powered support changes the game.</p>
+            <a href="contact.html" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <div class="footer-logo">FTT</div>
+                <p>Building the future of agency-client relationships through AI-accelerated delivery and proof-first engagement.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="approach.html">Our Approach</a></li>
+                    <li><a href="technology.html">Technology</a></li>
+                    <li><a href="ovie.html">Ovie</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Optimizely Sites</a></li>
+                    <li><a href="#">Re-platforming</a></li>
+                    <li><a href="#">AI Integration</a></li>
+                    <li><a href="#">Optimization</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="contact.html">Get in Touch</a></li>
+                    <li><a href="mailto:hello@ftt.ai">hello@ftt.ai</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 FTT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-reveal').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>

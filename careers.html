@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers - FTT</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --tertiary-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --dark-gradient: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            --text-dark: #1a1a2e;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--dark-gradient);
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 5% 4rem;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1920&q=80') center/cover;
+            opacity: 0.12;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1.5rem;
+            letter-spacing: -2px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+        }
+
+        section {
+            padding: 6rem 5%;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-out;
+        }
+
+        .section-reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 2rem;
+            letter-spacing: -1px;
+        }
+
+        /* Culture Section */
+        .culture {
+            background: white;
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .culture-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .culture-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .culture-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .culture-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .culture-card p {
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        /* Open Roles */
+        .open-roles {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+        }
+
+        .roles-container {
+            margin-top: 3rem;
+        }
+
+        .role-card {
+            background: white;
+            padding: 4rem;
+            border-radius: 20px;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .role-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .role-title h3 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .role-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4a5568;
+            font-weight: 500;
+        }
+
+        .badge {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .role-overview {
+            font-size: 1.2rem;
+            color: #4a5568;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .role-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .role-section h4 {
+            font-size: 1.6rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-dark);
+        }
+
+        .role-section ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .role-section li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #4a5568;
+            line-height: 1.7;
+        }
+
+        .role-section li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .apply-button {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--primary-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .apply-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Why Join Section */
+        .why-join {
+            background: var(--dark-gradient);
+            color: white;
+        }
+
+        .why-join h2 {
+            color: white;
+            text-align: center;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .benefit-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 3rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .benefit-card h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .benefit-card p {
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--primary-gradient);
+            color: white;
+            text-align: center;
+            padding: 8rem 5%;
+        }
+
+        .cta-section h2 {
+            color: white;
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-section p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            background: #1a1a2e;
+            color: white;
+            padding: 4rem 5%;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.8rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.6;
+        }
+
+        @media (max-width: 1024px) {
+            .culture-grid,
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .role-header {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .role-card {
+                padding: 2rem;
+            }
+
+            .role-title h3 {
+                font-size: 2rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <div class="logo">FTT</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="approach.html">Our Approach</a></li>
+                <li><a href="technology.html">AI Technology</a></li>
+                <li><a href="ovie.html">Ovie</a></li>
+                <li><a href="careers.html">Careers</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Build the Future with Us</h1>
+            <p class="subtitle">We're restructuring how agencies work. Join us in creating a new model that's faster, smarter, and more valuable for clients. If you thrive at the intersection of AI and delivery, this is your opportunity.</p>
+        </div>
+    </section>
+
+    <section class="culture section-reveal">
+        <div class="container">
+            <h2>What Makes FTT Different</h2>
+            <div class="culture-grid">
+                <div class="culture-card">
+                    <div class="culture-icon">🚀</div>
+                    <h3>Speed & Impact</h3>
+                    <p>We move fast. AI-accelerated workflows mean we deliver in days what others take months to build. Your work creates immediate, visible impact.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">🧠</div>
+                    <h3>AI-First Mindset</h3>
+                    <p>We don't use AI as a feature—it's fundamental to how we work. You'll be at the cutting edge of AI-augmented development.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">💡</div>
+                    <h3>High Leverage</h3>
+                    <p>Small team, big impact. You'll own outcomes, not tasks. Every role here is designed for maximum leverage and autonomy.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">🎯</div>
+                    <h3>Founder-Led</h3>
+                    <p>No organizational drag. No politics. Direct collaboration with founders who build alongside you.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">📈</div>
+                    <h3>Continuous Learning</h3>
+                    <p>Every project makes us smarter. Our systems compound. You'll be learning and improving faster than anywhere else.</p>
+                </div>
+                <div class="culture-card">
+                    <div class="culture-icon">🌍</div>
+                    <h3>Remote-First</h3>
+                    <p>Work from anywhere. Our workflows are designed for distributed collaboration with async-first communication.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="open-roles section-reveal">
+        <div class="container">
+            <h2>Open Positions</h2>
+            <div class="roles-container">
+
+                <!-- Pre-Sales AI Specialist -->
+                <div class="role-card">
+                    <div class="role-header">
+                        <div class="role-title">
+                            <h3>Pre-Sales AI Specialist</h3>
+                            <div class="role-meta">
+                                <div class="meta-item">📍 Remote</div>
+                                <div class="meta-item">⏰ Full-Time</div>
+                                <div class="meta-item"><span class="badge">New Role</span></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="role-overview">
+                        This is a new kind of role at the intersection of sales and delivery. You'll take our core codebase and AI systems to rapidly build working Optimizely sites for prospects—before they sign anything. This is one of the highest-leverage positions in the company and central to our new business model.
+                    </div>
+
+                    <div class="role-section">
+                        <h4>What You'll Do</h4>
+                        <ul>
+                            <li>Use our reusable Optimizely codebase and AI workflows to build production-realistic sites for prospects in 2-3 days</li>
+                            <li>Customize sites based on brand analysis, competitor research, and client requirements</li>
+                            <li>Rapidly prototype client-specific functionality using AI-assisted development</li>
+                            <li>Present working sites to prospects and iterate based on feedback</li>
+                            <li>Support our build-first sales motion by creating proof before persuasion</li>
+                            <li>Collaborate with founders on refining our AI workflows and reusable patterns</li>
+                            <li>Document patterns and improvements to strengthen our foundation</li>
+                        </ul>
+                    </div>
+
+                    <div class="role-section">
+                        <h4>What You Bring</h4>
+                        <ul>
+                            <li>Strong technical skills with React, Next.js, and modern web development</li>
+                            <li>Experience with Optimizely CMS (or similar enterprise CMS platforms)</li>
+                            <li>Comfort working with AI coding assistants (Claude, Cursor, GitHub Copilot, etc.)</li>
+                            <li>Ability to move fast without sacrificing quality—you ship production-ready code quickly</li>
+                            <li>Strong design sense and ability to customize UIs based on brand guidelines</li>
+                            <li>Client-facing communication skills—you can explain technical decisions clearly</li>
+                            <li>Judgment and taste—you know when to use AI, when to code manually, and when to reuse vs. customize</li>
+                            <li>Entrepreneurial mindset—you thrive in ambiguity and build systems, not just sites</li>
+                        </ul>
+                    </div>
+
+                    <div class="role-section">
+                        <h4>Ideal Background</h4>
+                        <ul>
+                            <li>3+ years in web development with modern JavaScript frameworks</li>
+                            <li>Experience building or customizing sites on enterprise platforms (Optimizely, Sitecore, Contentful, etc.)</li>
+                            <li>Comfort with pre-sales, consulting, or client-facing technical roles</li>
+                            <li>Track record of building quickly—hackathons, rapid prototyping, or agency work</li>
+                            <li>Curiosity about AI and how it changes development workflows</li>
+                        </ul>
+                    </div>
+
+                    <div class="role-section">
+                        <h4>Why This Role Matters</h4>
+                        <ul>
+                            <li>You're enabling a fundamentally new sales model that changes how agencies win work</li>
+                            <li>Every site you build strengthens our foundation and makes the next one faster</li>
+                            <li>This role becomes increasingly high-leverage as our AI systems improve</li>
+                            <li>Direct impact on company growth and ability to scale</li>
+                        </ul>
+                    </div>
+
+                    <a href="mailto:careers@ftt.ai?subject=Application: Pre-Sales AI Specialist" class="apply-button">Apply for This Role</a>
+                </div>
+
+                <!-- AI-Augmented Specialist -->
+                <div class="role-card">
+                    <div class="role-header">
+                        <div class="role-title">
+                            <h3>AI-Augmented Developer</h3>
+                            <div class="role-meta">
+                                <div class="meta-item">📍 Remote</div>
+                                <div class="meta-item">⏰ Full-Time</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="role-overview">
+                        You'll take prototypes from our pre-sales team and iterate them forward into production systems. This role requires strong technical judgment, the ability to work with AI tools effectively, and the autonomy to own client outcomes.
+                    </div>
+
+                    <div class="role-section">
+                        <h4>What You'll Do</h4>
+                        <ul>
+                            <li>Take working prototypes and evolve them into production-grade implementations</li>
+                            <li>Build complex integrations with third-party APIs and enterprise systems</li>
+                            <li>Implement advanced Optimizely features and custom functionality</li>
+                            <li>Optimize performance, accessibility, and SEO</li>
+                            <li>Work with clients to understand requirements and deliver solutions quickly</li>
+                            <li>Use AI tools to accelerate development while maintaining quality</li>
+                            <li>Contribute to our reusable component library and patterns</li>
+                        </ul>
+                    </div>
+
+                    <div class="role-section">
+                        <h4>What You Bring</h4>
+                        <ul>
+                            <li>5+ years of professional web development experience</li>
+                            <li>Deep expertise with React, Next.js, TypeScript, and modern frontend tooling</li>
+                            <li>Experience with headless CMS platforms, particularly Optimizely</li>
+                            <li>Strong understanding of web performance, accessibility, and SEO best practices</li>
+                            <li>Proven ability to use AI coding assistants effectively</li>
+                            <li>Excellent judgment about when to build custom vs. use existing solutions</li>
+                            <li>Ability to work autonomously and own client relationships</li>
+                        </ul>
+                    </div>
+
+                    <a href="mailto:careers@ftt.ai?subject=Application: AI-Augmented Developer" class="apply-button">Apply for This Role</a>
+                </div>
+
+                <!-- Ovie Platform Engineer -->
+                <div class="role-card">
+                    <div class="role-header">
+                        <div class="role-title">
+                            <h3>Ovie Platform Engineer</h3>
+                            <div class="role-meta">
+                                <div class="meta-item">📍 Remote</div>
+                                <div class="meta-item">⏰ Full-Time</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="role-overview">
+                        Build and evolve Ovie, our AI assistant that makes sustainable delivery possible. You'll work on AI systems, monitoring infrastructure, and intelligent automation that supports clients post-launch.
+                    </div>
+
+                    <div class="role-section">
+                        <h4>What You'll Do</h4>
+                        <ul>
+                            <li>Design and build AI-powered monitoring and optimization systems</li>
+                            <li>Develop intelligent agents that analyze site performance and suggest improvements</li>
+                            <li>Create automated workflows for content optimization, SEO, and performance tuning</li>
+                            <li>Build integrations with analytics platforms, CMS systems, and deployment tools</li>
+                            <li>Design conversational interfaces for Ovie's client interactions</li>
+                            <li>Implement learning systems that improve Ovie's recommendations over time</li>
+                        </ul>
+                    </div>
+
+                    <div class="role-section">
+                        <h4>What You Bring</h4>
+                        <ul>
+                            <li>Strong full-stack development skills (Node.js, Python, or similar)</li>
+                            <li>Experience working with LLM APIs (OpenAI, Anthropic, etc.)</li>
+                            <li>Understanding of web performance monitoring and optimization</li>
+                            <li>Familiarity with AI/ML concepts and prompt engineering</li>
+                            <li>Experience building automation and monitoring systems</li>
+                            <li>Ability to design systems that balance automation with human oversight</li>
+                        </ul>
+                    </div>
+
+                    <a href="mailto:careers@ftt.ai?subject=Application: Ovie Platform Engineer" class="apply-button">Apply for This Role</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section class="why-join section-reveal">
+        <div class="container">
+            <h2>Why Join FTT Now</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <h3>Ground Floor Opportunity</h3>
+                    <p>We're at an inflection point. Our new model is proven but not yet scaled. Join now and you'll help shape how we grow, with significant equity upside and career acceleration.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>AI-First Experience</h3>
+                    <p>Most companies talk about AI. We've built our entire operation around it. You'll gain experience that's 2-3 years ahead of the market.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Ownership & Equity</h3>
+                    <p>Competitive salary plus meaningful equity in a company with a structural advantage. We're small enough that your equity matters.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Learn & Grow Fast</h3>
+                    <p>Our compound learning model means you improve faster here than anywhere else. Every project teaches the whole team.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Work That Matters</h3>
+                    <p>You're not building features—you're building a new category. Your work directly impacts whether this model succeeds.</p>
+                </div>
+                <div class="benefit-card">
+                    <h3>Flexibility & Balance</h3>
+                    <p>Remote-first, async communication, results over hours. Work when and where you're most effective.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Don't See Your Role?</h2>
+            <p>We're always looking for exceptional people who understand AI, move fast, and want to build something new.<br>Reach out even if you don't fit a specific job description.</p>
+            <a href="mailto:careers@ftt.ai" class="cta-button">Get in Touch</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-section">
+                <div class="footer-logo">FTT</div>
+                <p>Building the future of agency-client relationships through AI-accelerated delivery and proof-first engagement.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="approach.html">Our Approach</a></li>
+                    <li><a href="technology.html">Technology</a></li>
+                    <li><a href="ovie.html">Ovie</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="#">Optimizely Sites</a></li>
+                    <li><a href="#">Re-platforming</a></li>
+                    <li><a href="#">AI Integration</a></li>
+                    <li><a href="#">Optimization</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="contact.html">Get in Touch</a></li>
+                    <li><a href="mailto:hello@ftt.ai">hello@ftt.ai</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 FTT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section-reveal').forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
