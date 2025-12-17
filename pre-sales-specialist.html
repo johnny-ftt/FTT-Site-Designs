@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="careers-detail.css">
 </head>
 <body>
-    <nav>
+    <nav id="nav">
         <div class="container">
             <div class="logo">FTT</div>
-            <ul>
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="navMenu">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="approach.html">Our Approach</a></li>
                 <li><a href="technology.html">AI Technology</a></li>
@@ -20,6 +25,7 @@
             </ul>
         </div>
     </nav>
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay"></div>
 
     <section class="job-hero">
         <div class="hero-image">
@@ -170,5 +176,31 @@
             <p>&copy; 2025 FTT. All rights reserved.</p>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+        const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+
+        function toggleMobileMenu() {
+            mobileMenuToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            mobileMenuOverlay.classList.toggle('active');
+            document.body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
+        }
+
+        mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+        mobileMenuOverlay.addEventListener('click', toggleMobileMenu);
+
+        // Close mobile menu when clicking on a link
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (navMenu.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+    </script>
 </body>
 </html>
